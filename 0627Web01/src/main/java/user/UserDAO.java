@@ -21,7 +21,7 @@ public class UserDAO {
 			String dbId = "root";
 			String dbPassword = "system123";
 			
-			Class.forName("com.mysql/jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(dbURL, dbId, dbPassword);
 			
 		} catch(Exception e) {
@@ -34,11 +34,11 @@ public class UserDAO {
 		
 		
 		
-		String SQL = "SELECT userID FROM TABLE_USER WHERE userID=?";
+		String SQL = "SELECT userPassword FROM TABLE_USER WHERE userID=?";
 		// 실행할 쿼리. 유저가 입력한 아이디에 해당하는 비밀번호를 가져온다.
 		
 		try {
-			pstmt = conn.prepareStatement(SQL);
+			pstmt = conn.prepareStatement(SQL);	// 문자열 쿼리를 pstmt에 대입
 			pstmt.setString(1, userID); // 첫번째 물음표에 userID값 대입.
 			// 프로그래밍 언어에서 인덱스는 0부터 시작이지만 쿼리에서는 1부터 시작이다.
 			rs = pstmt.executeQuery(); // 쿼리실행 후 결과 받기
